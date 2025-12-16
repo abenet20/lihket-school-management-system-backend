@@ -1,6 +1,12 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const database = require("./config/database");
+
+database
+ .sync()
+ .then(() => console.log("Database connected"))
+ .catch((err) => console.log("Error: " + err));
 
 app.use(
   cors({
