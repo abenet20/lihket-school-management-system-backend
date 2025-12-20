@@ -22,7 +22,7 @@ const user = database.define('User', {
     },
     email: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
     unique: true,
     },
     role: {
