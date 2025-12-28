@@ -4,12 +4,16 @@ const cors = require("cors");
 const database = require("./config/database");
 require("./models/users");
 require("./models/students");
+require("./models/attendance");
+require("./models/marks");
+require("./models/teachers");
 const adminRoutes = require("./routes/adminRoutes");
-const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
+const teacherRoutes = require("./routes/teacherRoutes");
 
 // Sync database
 database
- .sync({ alter: true })
+ .sync()
  .then(() => console.log("Database connected"))
  .catch((err) => console.log("Error: " + err));
 
@@ -23,7 +27,8 @@ app.use(
 
 app.use(express.json());
 app.use("/api/admin", adminRoutes);
-app.use("/api/user", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/teacher", teacherRoutes);
 
 app.listen(8000, "0.0.0.0", () =>
   console.log("server is running on port 8000")

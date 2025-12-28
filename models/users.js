@@ -29,6 +29,10 @@ const user = database.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
     defaultValue: 'student',
+    },
+    photoPath: {
+    type: DataTypes.STRING,
+    allowNull: true,
     }
 });
 
