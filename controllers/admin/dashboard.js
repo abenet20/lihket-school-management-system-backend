@@ -1,4 +1,3 @@
-const annoucement = require('../../models/announcements');
 const student = require('../../models/students');
 const teacher = require('../../models/teachers');
 const attendance = require('../../models/attendance');
@@ -7,14 +6,14 @@ const tardy = require('../../models/tardy');
 
 const getDashboardStats = async (req, res) => {
     try {
-        const present = await annoucement.findAll({
+        const present = await attendance.findAll({
             where: {
                 status: 'present',
                 date: new Date()
             }
         });
 
-        const absent = await annoucement.findAll({
+        const absent = await attendance.findAll({
             where: {
                 status: 'absent',
                 date: new Date()

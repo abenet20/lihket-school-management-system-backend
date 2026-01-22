@@ -11,7 +11,7 @@ const login = async (req, res) => {
       const passwordMatch = await bcrypt.compare(password, foundUser.password);
       if (passwordMatch) {
      const token =  generateToken({id: foundUser.id});
-      res.status(200).json({ message: "Login successful", token, user: foundUser });
+      res.status(200).json({ message: "Login successful", token, role: foundUser.role, userId: foundUser.id });
       } else {
       res.status(401).json({ message: "Invalid password" });
       }
