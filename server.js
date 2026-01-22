@@ -7,13 +7,17 @@ require("./models/students");
 require("./models/attendance");
 require("./models/marks");
 require("./models/teachers");
+require("./models/sections");
+require("./models/comments");
+require("./models/announcements");
+require("./models/tardy");
 const adminRoutes = require("./routes/adminRoutes");
 const authRoutes = require("./routes/authRoutes");
 const teacherRoutes = require("./routes/teacherRoutes");
 
 // Sync database
 database
- .sync()
+ .sync({ alter: true })
  .then(() => console.log("Database connected"))
  .catch((err) => console.log("Error: " + err));
 

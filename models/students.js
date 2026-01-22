@@ -35,7 +35,6 @@ const Student = database.define("Student", {
     email: {
         type: dataTypes.STRING,
         allowNull: true,
-        unique: true,
     },
     enrollmentDate: {
         type: dataTypes.DATE,
@@ -55,6 +54,10 @@ const Student = database.define("Student", {
             model: user,
             key: 'id',
         },
+    },
+    lastYearAverage: {
+        type: dataTypes.FLOAT,
+        allowNull: true,
     },
 
 });

@@ -4,7 +4,7 @@ const generator = require("generate-password");
 const bcrypt = require("bcrypt");
 
 const addStudent = async (req, res) => {
-    const {name,age,gender,grade,phone,email} = req.body;
+    const {name,age,gender,grade,phone,email,lastYearAverage} = req.body;
     const photoPath = req.body.path;
 
     try {
@@ -42,9 +42,9 @@ const addStudent = async (req, res) => {
             phone,
             email,
             userId: newUser.id,
-            photoPath
+            lastYearAverage
         },
-    { fields: ["name", "age", "gender", "grade", "phone", "email", "userId"] }
+    { fields: ["name", "age", "gender", "grade", "phone", "email", "userId","lastYearAverage"] }
     );
     newStudent.username = username;
     newStudent.password = studentPassword; 

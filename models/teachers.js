@@ -19,7 +19,6 @@ const Teacher = database.define("Teacher", {
     email: {
     type: DataTypes.STRING,
     allowNull: true,
-    unique: true,
     },
     phone: {
     type: DataTypes.STRING,
