@@ -1,7 +1,7 @@
 const database = require('../config/database');
 const { DataTypes, ENUM } = require('sequelize');
 
-const Comment = database.define('Comment', {
+const Comment = database.define('Comments', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
