@@ -1,5 +1,6 @@
 const database = require('../config/database');
 const { DataTypes, ENUM } = require('sequelize');
+const users = require('./users');
 
 const Announcement = database.define("Announcements",{
     id: {
@@ -25,7 +26,7 @@ const Announcement = database.define("Announcements",{
        type: DataTypes.INTEGER,
        allowNull: false,
        references: {
-        model: "users",
+        model: users,
         key: "id"
        }
     }
