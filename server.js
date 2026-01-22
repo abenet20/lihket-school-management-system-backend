@@ -15,12 +15,6 @@ const adminRoutes = require("./routes/adminRoutes");
 const authRoutes = require("./routes/authRoutes");
 const teacherRoutes = require("./routes/teacherRoutes");
 
-// Sync database
-database
- .sync({ alter: true })
- .then(() => console.log("Database connected"))
- .catch((err) => console.log("Error: " + err));
-
 app.use(
   cors({
     origin: "*", 
@@ -28,6 +22,21 @@ app.use(
     credentials: true,
   })
 );
+// Sync database
+database
+ .sync({ alter: true })
+ .then(() => console.log("Database connected"))
+ .catch((err) => console.log("Error: " + err));
+
+// app.use(
+//   cors({
+//     origin: [
+//       "http://localhost:3000",
+//     ],
+//     credentials: true,
+//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   })
+// );
 
 app.use(express.json());
 app.use("/api/admin", adminRoutes);

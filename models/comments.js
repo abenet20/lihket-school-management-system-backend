@@ -1,7 +1,7 @@
 const database = require('../config/database');
 const { DataTypes, ENUM } = require('sequelize');
 
-const Comment = database.define('Comment', {
+const Comment = database.define('Comments', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -20,7 +20,7 @@ const Comment = database.define('Comment', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-        model: "users",
+        model: "Users",
         key: "id"
   }
 }

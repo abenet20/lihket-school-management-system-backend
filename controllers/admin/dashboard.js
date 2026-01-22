@@ -1,4 +1,3 @@
-const annoucement = require('../../models/announcements');
 const student = require('../../models/students');
 const teacher = require('../../models/teachers');
 const attendance = require('../../models/attendance');
@@ -7,16 +6,23 @@ const tardy = require('../../models/tardy');
 
 const getDashboardStats = async (req, res) => {
     try {
-        const present = await annoucement.findAll({
+        const present = await attendance.findAll({
             where: {
                 status: 'present',
                 date: new Date()
             }
         });
 
-        const absent = await annoucement.findAll({
+        const absent = await attendance.findAll({
             where: {
                 status: 'absent',
+                date: new Date()
+            }
+        });
+
+        const tardies = await tardy.findAll({
+            where: {
+                status: 'late',
                 date: new Date()
             }
         });
@@ -24,7 +30,6 @@ const getDashboardStats = async (req, res) => {
         const totalStudents = await student.count();
         const totalTeachers = await teacher.count();
         const totalSections = await section.count();
-        const totalTardies = await tardy.count();
 
         res.status(200).json({success: true, data: {
             totals: {
@@ -35,7 +40,7 @@ const getDashboardStats = async (req, res) => {
             attendanceToday:{
             present: present.length,
             absent: absent.length,
-            tardy: totalTardies
+            tardy: tardies.length
             },
             examsThisTerm: {},
             results:{

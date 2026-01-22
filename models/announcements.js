@@ -1,5 +1,6 @@
 const database = require('../config/database');
 const { DataTypes, ENUM } = require('sequelize');
+const users = require('./users');
 
 const Announcement = database.define("Announcements",{
     id: {
@@ -19,15 +20,19 @@ const Announcement = database.define("Announcements",{
         type: DataTypes.STRING,
         allowNull: false,
         ENUM: ["active", "Inactive"]
-    }
-    ,
+    },
     postedBy: {
        type: DataTypes.INTEGER,
        allowNull: false,
        references: {
-        model: "user",
+        model: users,
         key: "id"
        }
+    },
+    target: {
+        type: DataTypes.STRING,
+        ENUM: ["all", "students","teachers"],
+        defaultValue: "all"
     }
 
 });
