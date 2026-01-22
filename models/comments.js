@@ -20,7 +20,7 @@ const Comment = database.define('Comments', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-        model: "users",
+        model: "Users",
         key: "id"
   }
 }
