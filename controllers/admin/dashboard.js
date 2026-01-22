@@ -20,10 +20,16 @@ const getDashboardStats = async (req, res) => {
             }
         });
 
+        const tardies = await tardy.findAll({
+            where: {
+                status: 'tardy',
+                date: new Date()
+            }
+        });
+
         const totalStudents = await student.count();
         const totalTeachers = await teacher.count();
         const totalSections = await section.count();
-        const totalTardies = await tardy.count();
 
         res.status(200).json({success: true, data: {
             totals: {
@@ -34,7 +40,7 @@ const getDashboardStats = async (req, res) => {
             attendanceToday:{
             present: present.length,
             absent: absent.length,
-            tardy: totalTardies
+            tardy: tardies.length
             },
             examsThisTerm: {},
             results:{
