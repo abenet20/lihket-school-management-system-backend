@@ -8,7 +8,7 @@ require("./models/attendance");
 require("./models/marks");
 require("./models/teachers");
 require("./models/sections");
-require("./models/comments");
+// require("./models/comments");
 require("./models/announcements");
 require("./models/tardy");
 const adminRoutes = require("./routes/adminRoutes");
