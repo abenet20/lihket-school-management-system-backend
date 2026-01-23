@@ -16,11 +16,6 @@ const Announcement = database.define("Announcements",{
         type: DataTypes.TEXT,
         allowNull: false
     },
-    target: {
-        type: DataTypes.STRING,
-        ENUM: ["all", "students","teachers"],
-        defaultValue: "all"
-    },
     status:{
         type: DataTypes.STRING,
         allowNull: false,
@@ -33,6 +28,11 @@ const Announcement = database.define("Announcements",{
         model: users,
         key: "id"
        }
+    },
+    target: {
+        type: DataTypes.STRING,
+        ENUM: ["all", "students","teachers"],
+        defaultValue: "all"
     }
 
 });
