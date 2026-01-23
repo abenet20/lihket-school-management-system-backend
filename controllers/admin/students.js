@@ -3,7 +3,7 @@ const Student = require("../../models/students");
 
 const getAllStudents = async (req, res) => {
    try{
-         const students = await Student.findAll({});
+         const students = await Student.findAll({attributes: ["id","name", "grade", "section","age","photo","status","phone","email"]});
          res.status(200).json({message: "Students fetched successfully", students});
 
    }
