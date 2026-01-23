@@ -15,7 +15,7 @@ const getAllStudents = async (req, res) => {
 const getStudentById = async (req, res) => {
     const {studentId} = req.params;
     try{
-          const student = await Student.findOne({where: {id: studentId}, include: [{model: Attendance}]});
+        const student = await Student.findByPk(studentId, {include: Attendance});
           if(student){
               res.status(200).json({message: "Student fetched successfully", student});
             } else {
