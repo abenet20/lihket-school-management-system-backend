@@ -1,6 +1,15 @@
 const { where } = require('sequelize');
 const Announcement = require('../../models/announcements');
 
+const announcement = async (req, res) => {
+    try {
+        const announcements = await Announcement.findAll();
+        res.status(200).json({message: "Announcements retrieved successfully", announcements});
+    } catch (error) {
+        res.status(500).json({message: "Server error", error: error.message});
+    }
+};
+
 const addAnnouncement = async (req, res) => {
    const {userId, title, body, target, status} = req.body;
 
@@ -34,4 +43,4 @@ const deleteAnnouncement = async (req, res) => {
     }
 };
 
-module.exports = { addAnnouncement, deleteAnnouncement };
+module.exports = { announcement, addAnnouncement, deleteAnnouncement };
