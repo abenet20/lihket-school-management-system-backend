@@ -22,7 +22,7 @@ const getDashboardStats = async (req, res) => {
 
         const tardies = await tardy.findAll({
             where: {
-                status: 'tardy',
+                status: 'late',
                 date: new Date()
             }
         });
