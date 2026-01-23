@@ -59,7 +59,7 @@ const attendance = async (req, res) => {
             });
 
              };
-            res.status(201).json({success: true, overview: {present, absent, tardy: tardies}, attendance: totalAttendance, tardt: totalTardy});
+            res.status(201).json({success: true, overview: {present: present.length, absent: absent.length, tardy: tardies.length}, attendance: totalAttendance, tardt: totalTardy});
     }catch(error){
         res.status(500).json({message: "Server error",error: error.message});
     }
