@@ -16,12 +16,16 @@ const Announcement = database.define("Announcements",{
         type: DataTypes.TEXT,
         allowNull: false
     },
+    target: {
+        type: DataTypes.STRING,
+        ENUM: ["all", "students","teachers"],
+        defaultValue: "all"
+    },
     status:{
         type: DataTypes.STRING,
         allowNull: false,
         ENUM: ["active", "Inactive"]
-    }
-    ,
+    },
     postedBy: {
        type: DataTypes.INTEGER,
        allowNull: false,

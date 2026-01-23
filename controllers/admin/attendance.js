@@ -36,7 +36,8 @@ const attendance = async (req, res) => {
             const attendance = await Attendance.findAll({
                 where: {
                     studentId: id
-                }
+                },
+                 attributes: ["id", "date", "status"]
             });
             const tardy = await Tardy.findAll({
                 where: {
@@ -48,14 +49,14 @@ const attendance = async (req, res) => {
                 name,
                 grade,
                 section,
-                attendance: {id: attendance.id, date: attendance.date, status: attendance.status}
+                attendance
             });
 
             totalTardy.push({
                 name,
                 grade,
                 section,
-                tardy: {id: tardy.id, date: tardy.date, status: tardy.status}
+                tardy
             });
 
              };
