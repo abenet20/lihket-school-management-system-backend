@@ -9,21 +9,21 @@ const attendance = async (req, res) => {
         let totalTardy = [];    
 
 
-         const present = await attendance.findAll({
+         const present = await Attendance.findAll({
             where: {
                 status: 'present',
                 date: new Date()
             }
         });
 
-        const absent = await attendance.findAll({
+        const absent = await Attendance.findAll({
             where: {
                 status: 'absent',
                 date: new Date()
             }
         });
 
-        const tardies = await tardy.findAll({
+        const tardies = await Tardy.findAll({
             where: {
                 status: 'late',
                 date: new Date()
