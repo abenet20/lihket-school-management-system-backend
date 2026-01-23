@@ -48,14 +48,14 @@ const attendance = async (req, res) => {
                 name,
                 grade,
                 section,
-                attendance
+                attendance: {id: attendance.id, date: attendance.date, status: attendance.status}
             });
 
             totalTardy.push({
                 name,
                 grade,
                 section,
-                tardy
+                tardy: {id: tardy.id, date: tardy.date, status: tardy.status}
             });
 
              };
