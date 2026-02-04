@@ -2,15 +2,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const database = require("./config/database");
-require("./models/users");
-require("./models/students");
-require("./models/attendance");
-require("./models/marks");
-require("./models/teachers");
-require("./models/sections");
-require("./models/comments");
-require("./models/announcements");
-require("./models/tardy");
+// register models and associations from a single entry point
+require("./models/index");
 const adminRoutes = require("./routes/adminRoutes");
 const authRoutes = require("./routes/authRoutes");
 const teacherRoutes = require("./routes/teacherRoutes");

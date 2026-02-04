@@ -11,9 +11,13 @@ const Section = database.define('Section', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-    gradeLevel: {
+  gradeLevel: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  capacity : {
+    type: DataTypes.INTEGER,
+    allowNull: true
   },
     adviserId: {
     type: DataTypes.INTEGER,

@@ -1,5 +1,6 @@
 const Student = require("./students");
 const Attendance = require("./attendance");
+const Section = require("./sections");
 
 // associations
 Student.hasMany(Attendance, {

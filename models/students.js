@@ -1,6 +1,5 @@
 const dataTypes = require("sequelize").DataTypes;
 const database = require("../config/database");
-const user = require("./users");
 
 const Student = database.define("Student", {
     id: {
@@ -25,7 +24,8 @@ const Student = database.define("Student", {
         allowNull: false,
     },
     section: {
-        type: dataTypes.STRING,
+        // store section id (will be associated in models/index.js)
+        type: dataTypes.INTEGER,
         allowNull: true,
     },
     phone: {
@@ -41,19 +41,20 @@ const Student = database.define("Student", {
         allowNull: false,
         defaultValue: dataTypes.NOW,
     },
-    status:{
-        type: dataTypes.STRING,
+    status: {
+        type: dataTypes.ENUM('active', 'inactive', 'graduated', 'suspended'),
         allowNull: false,
-        ENUM: ["active", "inactive", "graduated", "suspended"],
-        defaultValue: "active",
+        defaultValue: 'active',
     },
     userId: {
         type: dataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: user,
+            model: 'Users',
             key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT',
     },
     lastYearAverage: {
         type: dataTypes.FLOAT,

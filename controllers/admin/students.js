@@ -1,13 +1,17 @@
 const Attendance = require("../../models/attendance");
 const Student = require("../../models/students");
+const Section = require("../../models/sections");
 
 const getAllStudents = async (req, res) => {
    try{
-         const students = await Student.findAll({attributes: ["id","name", "grade", "section","age","photo","status","phone","email"]});
-         res.status(200).json({message: "Students fetched successfully", students});
+         const students = await Student.findAll({attributes: ["id","name", "grade", "section","age","status","phone","email"]});
+         const studentData = await Promise.all(students.map(async student => ({
+            ...student.toJSON(),
+            section: await Section.findByPk(student.section, {attributes: ["id", "name"]})
+         })));
+         res.status(200).json({message: "Students fetched successfully", students: studentData});
 
-   }
-    catch(error){
+   }catch(error){
         res.status(500).json({message: "Server error", error: error.message});
     }
 };

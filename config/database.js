@@ -1,11 +1,11 @@
 const Sequelize = require('sequelize');
 
 const database = new Sequelize(
-  "sql12815009",
-  "sql12815009",
-  "r8ejNgfBhQ",
+  "lihket",
+  "root",
+  "",
   {
-    host: "sql12.freesqldatabase.com",
+    host: "localhost",
     dialect: "mysql",
     logging: false, // disable SQL logs
   }
