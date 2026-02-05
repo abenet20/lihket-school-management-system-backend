@@ -1,19 +1,22 @@
 const Mark = require('../../models/marks');
+const Assessment = require('../../models/assessments');
 
 const addMark = async (req, res) => {
-    const { teacherId, studentsMarkData } = req.body;
-    const userId = req.user.id; 
+    const { assessmentId, studentsMarkData } = req.body;
+
+    const assessment = await Assessment.findByPk(assessmentId);
 
     try {
         studentsMarkData.forEach(async (markData) => {
-            const { studentId, subject, outOf, scored } = markData;
+            const { studentId, scoreObtained } = markData;
+            if (scoreObtained > assessment.maxScore) {
+                res.status(400).json({ message: `Score for student ${studentId} exceeds maximum score for the assessment` });
+            }
             await Mark.create({
                 studentId,
-                subject,
-                outOf,
-                scored,
-                teacherId: teacherId,
-            }, { fields: ['studentId', 'subject', 'outOf', 'scored', 'teacherId'] }
+                assessmentId,
+                scoreObtained
+            }, { fields: ['studentId', 'assessmentId', 'scoreObtained'] }
         );
         });
 

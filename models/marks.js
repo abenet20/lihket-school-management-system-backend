@@ -15,30 +15,17 @@ const Mark = database.define('Mark', {
         key: 'id'
     }
   },
-  subject: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  outOf: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    },
-  scored: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    },
-  teacherId: {
+  assessmentId: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-        model: 'Teachers',
+        model: 'Assessments',
         key: 'id'
     }
-    },
-    date: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: DataTypes.NOW,
+  },
+  scoreObtained: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
     }
 });
 

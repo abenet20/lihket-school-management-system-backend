@@ -7,3 +7,5 @@ const bcrypt = require("bcrypt");
     }
    console.log(hash);
  });
+
+ console.log(new Date().toISOString().slice(0, 10));

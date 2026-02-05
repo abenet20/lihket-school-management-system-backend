@@ -9,6 +9,7 @@ const {announcement, addAnnouncement, deleteAnnouncement} = require("../controll
 const dashboard = require("../controllers/admin/dashboard");
 const {getAllStudents, getStudentById } = require("../controllers/admin/students");
 const assignStudentsToSections = require("../controllers/admin/assignStudentsToSections");
+const addSubject = require("../controllers/admin/addSubject");
 
 
 const uploadPath = "C:/Users/hp/Documents/github/lihket-school-management-system/uploads";   
@@ -27,7 +28,7 @@ const fileUpload = multer({ storage });
 
 router.post("/add-student", verfyToken, fileUpload.single("studentPhoto") ,addStudent);
 router.post("/add-teacher", verfyToken ,addTeacher);
-router.post("/attendance", verfyToken ,attendance);
+router.get("/attendance", verfyToken ,attendance);
 router.get("/announcement", verfyToken ,announcement);
 router.post("/add-announcement", verfyToken ,addAnnouncement);
 router.delete("/delete-announcement/:announcementId", verfyToken ,deleteAnnouncement);
@@ -35,5 +36,6 @@ router.get("/dashboard", verfyToken ,dashboard);
 router.get("/students", verfyToken ,getAllStudents);
 router.get("/students/:id", verfyToken , getStudentById);
 router.post("/create-assign-sections", verfyToken, assignStudentsToSections);
+router.post("/add-subject", verfyToken, addSubject);
 
 module.exports = router;

@@ -16,18 +16,26 @@ const Attendance = database.define('Attendance', {
     }
  },
  date: {
-   type: DataTypes.DATE,
+   type: DataTypes.DATEONLY,
    allowNull: false,
    defaultValue: DataTypes.NOW
  },
  status: {
     type: DataTypes.STRING,
     allowNull: false,
-    enum: ["present", "absent"]
+    enum: ["present", "absent", "late"]
  },
 createdBy: {
    type: DataTypes.INTEGER,
    allowNull: false,
+   references: {
+    model: "Teachers",
+    key: "id"
+ }
+},
+updatedBy: {
+   type: DataTypes.INTEGER,
+   allowNull: true,
    references: {
     model: "Teachers",
     key: "id"

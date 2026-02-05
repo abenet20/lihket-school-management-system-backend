@@ -2,7 +2,6 @@ const student = require('../../models/students');
 const teacher = require('../../models/teachers');
 const attendance = require('../../models/attendance');
 const section = require('../../models/sections');
-const tardy = require('../../models/tardy');
 
 const getDashboardStats = async (req, res) => {
     try {
@@ -20,7 +19,7 @@ const getDashboardStats = async (req, res) => {
             }
         });
 
-        const tardies = await tardy.findAll({
+        const tardies = await attendance.findAll({
             where: {
                 status: 'late',
                 date: new Date()
