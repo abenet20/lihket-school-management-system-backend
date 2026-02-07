@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 
 const addTeacher = async (req, res) => {
     const { name, email, phone, subject, qualification, hireDate, status} = req.body;
+    const photoPath = req.file.path || null;
 
     try{
 function generateUsername(name = "user") {
@@ -27,9 +28,10 @@ function generateUsername(name = "user") {
             email,
             username: generateUsername(name),
             password: teacherPasswordHash,
-            role: "teacher"
+            role: "teacher",
+            photoPath
         },
-    { fields: ["name", "email", "username", "password", "role"] }
+    { fields: ["name", "email", "username", "password", "role", "photoPath"] }
     );
 
         const newTeacher =  await Teacher.create({

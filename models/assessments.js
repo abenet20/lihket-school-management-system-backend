@@ -23,6 +23,10 @@ const Assessment = database.define("Assessment", {
         type: DataTypes.INTEGER,
         allowNull: false
     },
+    status: {
+        type: DataTypes.ENUM('draft','submitted','approved'),
+        defaultValue: "draft"
+    },
     date: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW

@@ -12,6 +12,10 @@ const Subject = database.define("Subject", {
         type: DataTypes.STRING,
         allowNull: false
     },
+    grade: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     teacher: {
         type: DataTypes.INTEGER,
         allowNull: true,

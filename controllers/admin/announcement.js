@@ -30,7 +30,7 @@ const addAnnouncement = async (req, res) => {
 };
 
 const deleteAnnouncement = async (req, res) => {
-    const {announcementId} = req.params;
+    const announcementId = req.params.id;
     try{
       const deletedAnnouncement = await Announcement.destroy({
             where: {

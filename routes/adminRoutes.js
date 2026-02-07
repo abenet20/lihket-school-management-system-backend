@@ -12,7 +12,7 @@ const assignStudentsToSections = require("../controllers/admin/assignStudentsToS
 const addSubject = require("../controllers/admin/addSubject");
 
 
-const uploadPath = "C:/Users/hp/Documents/github/lihket-school-management-system/uploads";   
+const uploadPath = "uploads/users-pictures/";   
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -27,7 +27,7 @@ const fileUpload = multer({ storage });
 
 
 router.post("/add-student", verfyToken, fileUpload.single("studentPhoto") ,addStudent);
-router.post("/add-teacher", verfyToken ,addTeacher);
+router.post("/add-teacher", verfyToken, fileUpload.single("teacherPhoto") ,addTeacher);
 router.get("/attendance", verfyToken ,attendance);
 router.get("/announcement", verfyToken ,announcement);
 router.post("/add-announcement", verfyToken ,addAnnouncement);
