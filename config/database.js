@@ -8,8 +8,6 @@ const database = new Sequelize(
   {
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-    dialect: "mysql",
-    logging: false, // disable SQL logs
   },
 );
 
