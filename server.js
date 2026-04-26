@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const database = require("./config/database");
-// register models and associations from a single entry point
 require("./models/index");
 const adminRoutes = require("./routes/adminRoutes");
 const authRoutes = require("./routes/authRoutes");
@@ -10,26 +9,16 @@ const teacherRoutes = require("./routes/teacherRoutes");
 
 app.use(
   cors({
-    origin: "*", 
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
-  })
+  }),
 );
-// Sync database
-database
- .sync({ alter: true })
- .then(() => console.log("Database connected"))
- .catch((err) => console.log("Error: " + err));
 
-// app.use(
-//   cors({
-//     origin: [
-//       "http://localhost:3000",
-//     ],
-//     credentials: true,
-//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//   })
-// );
+database
+  .sync({ alter: true })
+  .then(() => console.log("Database connected"))
+  .catch((err) => console.log("Error: " + err));
 
 app.use(express.json());
 app.use("/api/admin", adminRoutes);
@@ -37,5 +26,5 @@ app.use("/api/auth", authRoutes);
 app.use("/api/teacher", teacherRoutes);
 
 app.listen(8000, "0.0.0.0", () =>
-  console.log("server is running on port 8000")
+  console.log("server is running on port 8000"),
 );

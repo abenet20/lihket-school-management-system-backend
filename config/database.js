@@ -1,14 +1,16 @@
-const Sequelize = require('sequelize');
+const Sequelize = require("sequelize");
+require("dotenv").config();
 
 const database = new Sequelize(
-  "lihket",
-  "root",
-  "",
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
   {
-    host: "localhost",
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
     dialect: "mysql",
     logging: false, // disable SQL logs
-  }
+  },
 );
 
 module.exports = database;

@@ -1,30 +1,27 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
+const cloudinary = require("../middleware/cloudinary");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const verfyToken = require("../middleware/verifyToken");
 const addMark = require("../controllers/teacher/addMark");
 const saveAttendance = require("../controllers/teacher/saveAttendance");
 const addAssessment = require("../controllers/teacher/addAssessment");
 const editMark = require("../controllers/teacher/editMark");
-const uploadTools = require("../controllers/teacher/uploadTools.ts");
+const uploadTools = require("../controllers/teacher/uploadTools");
 
-
-const uploadPath = "uploads/tools/";   
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadPath);
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "uploads",
   },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  }
 });
 
 const fileUpload = multer({ storage });
 
 router.post("/upload-tool", verfyToken, uploadTools);
-router.post("/add-mark", verfyToken ,addMark);
-router.post("/add-assessment", verfyToken ,addAssessment);
+router.post("/add-mark", verfyToken, addMark);
+router.post("/add-assessment", verfyToken, addAssessment);
 router.post("/save-attendance", verfyToken, saveAttendance);
 router.post("/edit-mark", verfyToken, editMark);
 
